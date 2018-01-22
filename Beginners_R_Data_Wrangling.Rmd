@@ -50,6 +50,7 @@ To access this: press the dashed line button on the upper right corner of the ma
 
 ![](pictures/TOC.png)
 
+<br>
 
 # Aim of the workshop	
 
@@ -65,7 +66,9 @@ To access this: press the dashed line button on the upper right corner of the ma
 * Perform data manipulations with dplyr
 * Reshape data frames 
 * Join data frames together
-    
+
+<br>
+
 # Tidy data and tidyr
 We will be working mainly with packages from [tidyverse](http://tidyverse.org/) to perform data manipulations and transformations. The tidyverse package is a package of packages, does not contain its own functions per se but includes a [variety of other packages](https://blog.rstudio.org/2016/09/15/tidyverse-1-0-0/), like [dplyr](http://dplyr.tidyverse.org/), [tidyr](http://tidyr.tidyverse.org/), [ggplot2](http://ggplot2.org/). Therefore by installing and loading the tidyverse package, we install and load all of these other packages as well.        
 
@@ -146,6 +149,8 @@ We also will need to load the tidyverse package as well.
 
 *Do not use print if you have a lot of data.*        
 This will print all the rows and columns in the dataset to the screen and if you have a few thousand rows or columns it is really pointless.  
+
+<br>
 
 # Data Manipulation with dplyr
 
@@ -410,10 +415,10 @@ Create summary statistics from data sets.
 
 ```{r, eval = FALSE}
 # get mean of life expectancy
-summarise(gapminder, mean_lifexp = mean(lifeExp, na.rm=TRUE))
+summarise(gapminder, mean_lifexp = mean(lifeExp))
 
 # get mean of life expectancy and mean of GDP
-summarise(gapminder, mean_lifexp = mean(lifeExp, na.rm=TRUE), mean_gdp = mean(gdpPercap, na.rm=TRUE))
+summarise(gapminder, mean_lifexp = mean(lifeExp), mean_gdp = mean(gdpPercap))
 ```     
 
 <br>
@@ -531,7 +536,7 @@ This means take the output from the previous command as the input the next comma
 ```{r, eval = FALSE}
 gapminder %>%
     group_by(country) %>%
-    summarise(mean_LE = mean(lifeExp, na.rm=TRUE))
+    summarise(mean_LE = mean(lifeExp))
 ```
 *NOTE:* input data information for each command is now missing, and the subsequent "piped" commands are indented. The indentation makes it easier to follow the trail of commands within the pipe.      
 
@@ -706,6 +711,8 @@ Where would I go for help or more information about my command?
 
 There are other ways to reshape data in R. One way is to use the package [reshape2](https://cran.r-project.org/web/packages/reshape2/reshape2.pdf). [Melt](https://www.rdocumentation.org/packages/reshape2/versions/1.4.2/topics/melt) function performs the same task as gather, and [cast](https://www.rdocumentation.org/packages/reshape2/versions/1.4.2/topics/cast) performs the same task as spread. There is not a pro/con to which one you use, both will achieve the same result just using different approaches (and different command syntax) to get there.       
 
+<br>
+
 # Missing Data
 Missing data in R is given a unique identifier *NA*, which means *not available*.        
 
@@ -763,9 +770,25 @@ It is always worth stopping to investigate different aspects of your data, inclu
 
 Missingness can be informative, and not missing at random. If you were collecting data that asked some questions that only one sex could answer, like about pregnancy, then the missing data is not missing at random but is related to another characteristic. This missing data still contains information.     
 
+> Missing Data
+
+1. Examine the built-in dataset called airquality (head and dim the dataset)    
+
+```
+```
+
+2. How many rows are missing at least 1 variable?      
+```
+```
+
+3. Remove all rows with missing data, save the new clean dataset as airquality_nomissing       
+
+```
+```     
+
 ## Missing and Utilities   
 ```{r, eval = FALSE}
-mean(airquality[,"Ozone"])
+summarise(airquality, mean_ozone = mean(Ozone))
 ```
 **Why is this result occuring? What does the documentation about mean tell you?**   
 
@@ -776,8 +799,10 @@ This is due to the default parameters set for different options within the funct
 To correct of this, the default needs to be over ridden.       
 
 ```{r, eval = FALSE}
-mean(airquality[,"Ozone"], na.rm = TRUE)
+summarise(airquality, mean_ozone = mean(Ozone))
 ```
+
+<br>
 
 # Joining data    
 Data sets must share at least one column with the same/similar information that you want to join them together on, called a **key**.    

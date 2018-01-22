@@ -1,7 +1,7 @@
 ---
 title: "Beginners' R -- Plotting"
 author: "Katherine Tansey"
-date: "27 November 2017"
+date: "15 January 2018"
 output:
   html_document:
     depth: 4
@@ -13,6 +13,43 @@ output:
   word_document:
     toc: yes
 ---
+
+# SETUP
+
+The data was sent to you before the course.   
+
+Please **place this file on your desktop** and **unzip** it.
+
+We are going to be working on **2** files. Please open:       
+
+    1. Beginners_R_Plotting_Practicals.Rmd          
+    2. Beginners_R_Plotting.html      
+
+Beginners_R_Plotting.html is a *html file*, and should open in your default internet browser. 
+    
+Beginners_R_Plotting_Practicals.Rmd is a *R markdown file*, and should have opened up in RStudio.     
+
+## Output in RStudio 
+
+We need to alter how the output is displayed for *Beginners_R_Plotting_Practicals.Rmd* in RStudio.    
+
+We want the output to be displayed in the console **NOT** within the R markdown file.      
+
+To change this:
+
+    Click on the Gear Icon > Select "Chunk Output in Console" 
+ 
+![](pictures/change_output.png)  
+
+## Reveal the Table of Contents 
+
+ *Beginners_R_Plotting_Practicals.Rmd* has a table of contents created using the **#** which creates headers in Markdown.   
+
+To access this: press the dashed line button on the upper right corner of the markdown file.
+
+![](pictures/TOC.png)
+
+<br>
 
 # Aim of the workshop	
 
@@ -33,6 +70,8 @@ output:
 * Understand how to modify the plot layout
 * Know how human perception changes interpretation of graphics 
 
+<br>
+
 # ALWAYS LOOK AT YOUR DATA!!!
 
 Classic example called "Ancombe's Quartet", contains four data sets with nearly the **same exact statistics**:   
@@ -49,6 +88,7 @@ However when the data is visualized the true differences between the data sets a
 
 ![](pictures/ancombe_quartet.png)
 
+<br>
 
 # Grammar of graphics
 [ggplot2](http://vita.had.co.nz/papers/layered-grammar.pdf) package implements the ethos of the Leland Wilkinson's book  published in 1999.  **Works on idea of layers**, where things can be constantly added to the plot by adding another layer.
@@ -142,6 +182,8 @@ ggplot(data = mtcars, mapping = aes(x=mpg, y=hp)) +
 ```
 ```
 
+<br>
+
 # Data
 Preferable to start with a clean tidy dataset.     
 
@@ -168,6 +210,8 @@ Think about what your visualization is communicating.
 * What information is actually getting across to the reader?              
 
 ![](pictures/circos_plot.png)  
+
+<br>
 
 # Aesthetics
 In ggplot terminology, aesthetics refers to the data/variable linked to an attribute.    
@@ -225,6 +269,7 @@ What happens if you set **color** as an aesthetic (assign a *non-numeric* variab
 
 Why do you think this is happening?   
 
+<br>
 
 # Geometries 
 The type of plot used to visualize data depends on the type of data being plotted. Not all graphs are appropriate for all data types.       
@@ -237,10 +282,9 @@ ggplot2 offers a wide variety of different plot types, referred to as *geoms*.
 
 ![](pictures/geoms.png)      
 
+<br>
 
-## One Variable
-
-### Continuous 
+## One Variable -- Continuous 
 A histogram or a density plot are the most common for a single continuous variable trait.      
 
 ![](pictures/hist.png)     
@@ -306,8 +350,9 @@ Try it out.
 ```
 ```
 
+<br>
 
-### Discrete
+## One Variable --Discrete
 A bar plot is the most common for a single discrete variable trait.     
 ![](pictures/bar.png)      
 
@@ -333,9 +378,9 @@ Make a bar chart using the diamonds dataset. Select a *non-numeric* variable to 
 ```
 ``` 
 
-## Two Variable
+<br>
 
-### Both continuous 
+## Two Variable -- Both continuous 
 ![](pictures/scatters.png)    
 <br>
 
@@ -471,7 +516,9 @@ Try to alter the code to create this.
 ```
 ``` 
 
-### Over plotting    
+<br>
+
+## Over plotting    
 Over plotting occurs when there are too many data points. It then becomes hard to see any information about density of data when all points are solid black dots.     
 
 Information about the data becomes less clear with more data points.         
@@ -527,7 +574,9 @@ Within the geom_jitter command, include arguments for alpha (*alpha = #*).
 ```
 ```
 
-### Continuous and Time
+<br>
+
+## Two Variable -- Continuous and Time
 ![](pictures/timeline.png)    
 
 <br>
@@ -568,7 +617,9 @@ We need to filter the dataset to just include the country United Kingdom. Like a
 ```
 ```
 
-### Discrete and Continuous 
+<br>
+
+## Two Variable -- Discrete and Continuous 
 ![](pictures/box_violin.png)      
 To make a box plot in ggplot2, we use the **geom_boxplot()** command.  
 
@@ -622,6 +673,7 @@ You can tell jitter a range to jitter within, [see here](http://ggplot2.tidyvers
 
 *Which one do you think is more informative, the box plot or violin plot?*
 
+<br>
 
 # Facet
 Split up a large complex plot into multiple smaller plots by creating a separate plot for each category of a categorical (or discrete) variable. 
@@ -666,6 +718,8 @@ Using the diamonds data set:
 ```
 ```
 
+<br>
+
 # Coordinates
 There are two different ways to alter the axis of a plot.     
 
@@ -699,6 +753,8 @@ Because coord_cartesian takes both x and y axis information, you need to tell it
 
 ```
 ```
+
+<br>
 
 # Themes
 Everything in ggplot2 can be altered. [Theme](http://ggplot2.tidyverse.org/reference/theme.html) refers to all the visual elements not part of the plot, like:
@@ -740,7 +796,9 @@ This is another layer being add, so the *theme_bw()* line of code is add to the 
 ```
 ```
 
-## Things to think about when making plots
+<br>
+
+# Things to think about when making plots
 Humans read different information with differing levels of ease, and this should be taken into account when creating a graphic. Make it easy for your reader to be able to interpret the information.        
 
 ![](pictures/human_preception.png) 
@@ -756,4 +814,8 @@ In general, color should only be used for non-continuous traits. Color different
 
 Avoid using two different aesthetics to show the same information.       
 ![](pictures/redundancy.png)     
-**What is color telling us?**       
+**What is color telling us?**      
+
+It is also worth making graphics color blind friendly. There are numerous palettes within R/ggplot2 that have been created to help. See [here](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette) for more information.      
+
+![](pictures/color_blind.png)   

@@ -108,6 +108,8 @@ Click the green arrow on the right hand side to run this code in the practical m
 Create a list of different animals (barnyard and household animals) each with a different value. Create at least 7 variables. 
 
 ```{r}
+horses 
+dogs
 
 ```
 
@@ -169,7 +171,7 @@ typeof(y)
 
 # Altering a markdown file  
 
-1. Copy that code chunk and alter the options so that only the results are print in the output (no code).    
+1. Alter the options so that only the results are print in the output (no code).    
 
 ```{r}
 x <- 75
@@ -181,7 +183,7 @@ z <- -21
 
 *Knit* the HTML     
 
-2. Copy that code chunk and alter the options so that only the code is printed (no results) in the output.     
+2. Alter the options so that only the code is printed (no results) in the output.     
 
 ```{r}
 x <- 75
@@ -191,8 +193,9 @@ z <- -21
 (x * z) - y
 ```
 
+*Knit* the HTML   
 
-3. Copy that code chunk and alter the options so that R does not evaluate the code.    
+3. Alter the options so that R does not evaluate the code.    
 
 ```{r}
 x <- 75
@@ -201,6 +204,8 @@ z <- -21
 
 (x * z) - y
 ```
+
+*Knit* the HTML 
 
 # Set working directory
 
@@ -213,12 +218,12 @@ If you are not in BeginnersR_Materials_Day1 (this should be the last name in the
 
 ```{r, eval = FALSE}
 # MACS
-setwd("/")
+#setwd("/")
     
 # Windows
-setwd("c:/")
+#setwd("c:/")
 ```   
-Choose the appropriate one for your computer and **DELETE** the other one. Use tab completion to move to the  BeginnersR_Materials_Day1 folder on your computer.      
+Choose the appropriate one for your computer by **DELETING** the # in front of the command. Use tab completion to move to the  BeginnersR_Materials_Day1 folder on your computer.      
 
 **REMEMBER** you are setting the working **directory** (folder) not pathing to a specific file.    
 

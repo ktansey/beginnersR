@@ -400,36 +400,24 @@ Where would I go for help or more information about my command?
 
 # Missing Data
 
-To convert missing notations to R notations:
-```{r, eval = FALSE}
-data$col_1[data$col_1 == "-9"] <- NA
-```
-
-To remove missingness:
+1. Examine the built-in dataset called airquality (head and dim the dataset)    
 ```{r}
-complete.cases(tb)
+
 ```
 
+2. How many rows are missing at least 1 variable?     
 ```{r}
-summary(complete.cases(tb))
+
 ```
-FALSE means there is missing data for that row, and TRUE is that there is no missing data for that row.      
 
-To create a new dataset without any missingness using **complete.cases()** run the code below:    
-
+3. Remove all rows with missing data, save the new clean dataset as airquality_nomissing       
 ```{r}
-tb_nomissing <- tb[complete.cases(tb),]
-```
 
-Another way to remove missing data is to use **na.omit()**    
-
-```{r}
-tb_nomissing <- na.omit(tb)
-```
+```   
 
 ## Missing and Utilities   
 ```{r}
-mean(airquality[,"Ozone"])
+summarise(airquality, mean_ozone = mean(Ozone))
 ```
 **Why is this result occuring? What does the documentation about mean tell you?**   
 

@@ -49,6 +49,8 @@ To access this: press the dashed line button on the upper right corner of the ma
 
 ![](pictures/TOC.png)
 
+<br>
+
 # Aim of the workshop	
 
 * Basics of R
@@ -57,6 +59,8 @@ To access this: press the dashed line button on the upper right corner of the ma
 * Working with R packages
 * Data wrangling using the tidyverse package
 * Data visualization with ggplot2
+
+<br>
 
 # Basics of R
 
@@ -68,6 +72,8 @@ To access this: press the dashed line button on the upper right corner of the ma
 * Learn where to find help   
 * Find and install packages into R
 * Import and Export data from R
+
+<br>
 
 # R Studio
 
@@ -122,6 +128,8 @@ To open a new Markdown file:
 *If this prompts you to install packages, **click yes***
 
 This will open a dialogue window, **click CANCEL**.      
+
+<br>
 
 # Do math
 Very basic use of R is getting R to perform mathematical operations. 
@@ -189,6 +197,8 @@ See [here](http://adv-r.had.co.nz/Vocabulary.html) for more basic math functions
 
 ```  
 
+<br>
+
 # Prompt   
 The prompt is represented by this symbol **>**. This means that R is **awaiting input** telling you that **nothing is currently running**.    
 
@@ -213,6 +223,8 @@ Click the green arrow on the right hand side to run this code in *Beginners_R_Ba
 (4 * (5 - (3 + 1))
 ```
 
+<br>
+
 # Comments
 R ignores everything after a **#**.   
 
@@ -230,6 +242,8 @@ Commands can come after the command on the same line as well.
 43 # a number
 "hello" # a word/character
 ```
+
+<br>
 
 # Assigning values to variables
 
@@ -293,6 +307,8 @@ Create a list of different animals (barnyard and household animals) each with a 
 ```
 ```
 
+<br>
+
 # Variables can be used like values
 Use variable name instead of values to perform mathematical operations, or any operation in R. R will replace the variable name with the value it represents.    
   
@@ -318,6 +334,8 @@ household
 ```
 ```
 
+<br>
+
 # Displaying values of variables
 
 There are two ways to do this:
@@ -335,6 +353,8 @@ print(dogs)
 
 This will print all the rows and columns in the dataset to the screen and if you have a few thousand rows or columns it is really pointless.  
 
+<br>
+
 ## Tab Completion
 
 RStudio will tab complete previously defined variable names and also commands!
@@ -342,6 +362,8 @@ RStudio will tab complete previously defined variable names and also commands!
 This can be **very useful**, particularly for long or complicated variable names which are harder to get wrong if R is helping you complete the name. 
 
 *Remember with computers: You **MUST ALWAYS** be completely precise in your instructions*
+
+<br>
 
 # Data Types
 Not all data are the same. R treats data differently depending on what type of data it is.            
@@ -372,6 +394,8 @@ class(y)
 typeof(x)
 typeof(y)
 ```
+
+<br>
 
 # Getting Help
 There are various ways to get help in R.    
@@ -414,6 +438,7 @@ Querying the internet can be more useful as people give examples. Usually someon
 > Examine the help file for read.table
 
 1. What is the default option for whether a file has a header or not?    
+
 <br>
 
 # R packages
@@ -501,6 +526,8 @@ installed.packages()
 update.packages() 
 ```
 
+<br>
+
 ## Vignettes
 
 Most R packages come with a reference manual and vignettes. Depending on who wrote the R packages, vignettes can be extremely useful examples of how to use the package. 
@@ -510,6 +537,8 @@ Most R packages come with a reference manual and vignettes. Depending on who wro
 [Click here](https://cran.r-project.org/web/packages/dplyr/index.html) 
 
 Again *NOT ALL* vignettes are this well formatted. Because packages can be contributed to R by *anyone*, it highly varies from package to package.   
+
+<br>
 
 # R Markdown 
 ## Project management
@@ -599,6 +628,8 @@ This will open a new markdown file.
 <br>
 
 We will be working within R markdown files for the course. The course materials are written in R markdown files, and the practicals will be done within R markdown.   
+
+<br>
 
 ## Basics of Markdown language
 
@@ -721,6 +752,8 @@ z <- -21
 
 ![](pictures/markdown_alteroutput.png)  
 
+<br>
+
 ## Customising R markdown files
 There are lots of ways to customize a markdown file.     
 
@@ -750,6 +783,7 @@ We have not specified anything for word or PDF outputs, just for HTML, so these 
 
 For more options and customizing, see [here](http://rmarkdown.rstudio.com/html_document_format.html), [here](https://blog.rstudio.com/2016/03/21/r-markdown-custom-formats/), and  [here](https://cran.r-project.org/web/packages/prettydoc/vignettes/architect.html).    
 
+<br>
 
 # Importing/Exporting data into R
 
@@ -1021,6 +1055,8 @@ Remember : File name is **ALWAYS** surrounded by quotes.
 
 ```
 
+<br>
+
 # Data Structures
 There are a variety of different data structures in R. We are only going to cover three of them:      
 1. Vector     
@@ -1127,6 +1163,7 @@ If there is any character in the vector, the entire vector will become a charact
 
 This is **also true in data frames** where each individuals column can only contain a single data type. 
 
+<br>
 
 ## Factor
 Factors represent categorical data, and can be ordered or unordered. Factors are stored as integers but have labels associated with them that are unique to each integer.    
@@ -1171,6 +1208,8 @@ movie_ratings <- c("bad", "okay", "okay", "good", "amazing", "horrible", "bad", 
 ```
 
 *Which one do you think is more informative?*
+
+<br>
 
 ## Data Frame
 Two dimensional object that include both rows and columns. Columns are variables and rows are the observations. **Each column can have a different data type**. 
