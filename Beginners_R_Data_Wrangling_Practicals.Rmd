@@ -1,0 +1,495 @@
+---
+title: "Beginners' R -- Data Wrangling"
+author: "Katherine Tansey"
+date: "15 January 2018"
+output:
+  html_document:
+    depth: 4
+    keep_md: yes
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+  word_document:
+    toc: yes
+---
+# FIRST
+
+We need to alter how the output is displayed for this R markdown file. We want the output to be displayed in the console **NOT** within the R markdown file.      
+
+To change this:
+
+    Click on the Gear Icon > Select "Chunk Output in Console" 
+ 
+![](pictures/change_output.png)
+
+# Reveal the Table of Contents 
+
+This practical has a table of contents created using the **#**. Creating headers in Markdown will automatically created a Table of Contents.      
+
+To access this: press the dashed line button on the upper right corner of the markdown file.
+
+![](pictures/TOC.png)
+
+
+# Examine the gapminder data
+
+Let's first get a dataset to work on. Install and load the gapminder package in R. 
+
+Access gapminder data by:
+```{r, eval = FALSE}
+# remember you only have to install a package once
+install.packages("gapminder")
+library(gapminder)
+head(gapminder)
+```
+
+1. How many rows and columns are there?
+
+```{r}
+
+```
+
+2. What do the first few rows look like?
+
+```{r}
+
+```
+
+3. Does it have column names? What are they?
+
+```{r}
+
+```
+
+4. What type of data is in each column?
+
+```{r}
+
+```
+
+5. Examine the output from summary. What is this telling you about the data?
+
+```{r}
+
+```
+
+
+# select          
+
+Using the gapminder dataset:    
+
+1. Select country, year, and population columns from gapminder             
+
+```{r}
+
+```
+
+Using the iris dataset :    
+
+2. Select all columns that contain the word Length      
+There are numerous ways to do this -- how many different ways can you find?
+
+```{r}
+
+```
+
+3. Select all columns that contain the word Petal       
+There are numerous ways to do this -- how many different ways can you find?
+
+```{r}
+
+```
+
+Using the mtcars dataset:         
+
+4. Select all columns but disp and hp
+
+```{r}
+
+```
+
+5. Select columns mpg through to qsec, and gear
+
+```{r}
+
+```
+
+
+# filter         
+
+Using the gapminder dataset:      
+
+1. Keep only those rows with a life expectancy under 35    
+
+```{r}
+
+```      
+
+2. Keep only rows where continent is Americas or Europe.   
+Strings (characters/words) must be surround in quotes.    
+
+```{r}
+
+```
+
+3. Keep only rows where country is Canada and the year is greater than 1983    
+
+```{r}
+
+```  
+
+4. Keep only rows where country is Canada or Australia and the year is before 1974  
+    
+```{r}
+
+```  
+
+5. Keep only the rows where the year is greater than 1990, the continent is Europe and the gdpPercap is greater than 35000        
+
+```{r}
+
+``` 
+
+# arrange 
+
+Using the gapminder dataset:
+
+1. Arrange the gapminder data by ascending year
+
+```{r}
+
+```
+
+2. Arrange the gapminder data by descending year
+
+```{r}
+
+```
+
+3. Arrange the gapminder data by descending country and ascending year
+
+```{r}
+
+```
+
+# group
+
+Using the msleep dataset:
+    msleep is a mammals sleep dataset
+    
+1. Examine the first few lines of the msleep dataset     
+
+```{r}
+
+```
+
+2. Group by vore      
+
+```{r}
+
+```
+
+3. Group by order     
+
+```{r}
+
+```
+
+4. Group by vore and order    
+
+```{r}
+
+```
+
+*Does the output look different between the different datasets?*          
+
+# summarise
+
+
+Using the gapminder dataset:
+
+1. Get the standard deviation (sd) for the population column
+
+```{r}
+
+```
+
+2. Get the median and standard deviation for gdpPercap
+
+```{r}
+
+```
+
+3. Get the minimum and maxiumum life expectancy. 
+
+```{r}
+
+```
+
+Using the msleep dataset:
+
+4. Get the mean for sleep_total and awake     
+
+```{r}
+
+```
+
+5. Get the maximum and minimum brainwt     
+
+```{r}
+
+```
+
+
+*NOTE:* output is in table format, which can be saved as data frame. 
+
+# mutate
+
+Using the gapminder dataset:
+
+1. Create a column called GDP which is population multiplied by gdpPercap
+
+```{r}
+
+```
+
+Using the iris dataset:       
+
+2. Create two columns, one for sepal area (sepal width times sepal length) and petal area (petal width times petal length)
+
+```{r}
+
+```
+
+# pipe
+
+Using the gapminder dataset:
+
+1. Keep only the rows where year is 1982 and sort by descending gdpPercap
+
+```{r}
+
+```
+
+2. Keep only the rows where country is Canada, select only the country, year and pop columns, and then ascending sort by population
+
+```{r}
+
+```
+
+3. Keep only the rows where year is 1982 and the continent is Europe and sort by descending lifeExp, and then only return country and lifeExp columns    
+
+```{r}
+
+```
+
+4. Sort the data by the minimum life expectancy for each country      
+Need to find the minimum life expectancy for each country (*HINT*: group_by and then summarise).      
+
+```{r}
+
+```
+
+5. Get the average life expectancy by country and year, and sorted for the longest life expectancy.   
+
+```{r}
+
+```
+
+6. For just countries in Africa, create a new variable called GDP which is population multiplied by gdpPercap, then get the average GDP by year and country and sort this be descending GDP      
+
+```{r}
+
+```
+
+**Challenge**     
+7. How many distinct countries are in the file for each continent?        
+*HINT:* Use [n_distinct](http://dplyr.tidyverse.org/reference/n_distinct.html)
+
+```{r}
+
+```
+
+**BIG challenge**     
+8. Sort countries by their change in GDP from 1952 to 2007.      
+*HINT:* These other dplyr commands may help [lead and lag](https://rdrr.io/cran/dplyr/man/lead-lag.html) and [n](https://www.rdocumentation.org/packages/dplyr/versions/0.5.0/topics/n).  
+
+```{r}
+
+```
+
+# Reshape data     
+
+1. From the data folder, load pew.txt into R and save it as a variable called "pew"     
+
+Do this either using the import functionality or by writing out the code.      
+
+```{r}
+
+```
+
+2. Examine pew    
+
+```{r}
+
+```
+
+**What format is the data in?**     
+
+3. Change the format of pew to have three columns only, one for religion, one for income bracket and one for the number of individuals in that income bracket. Save as a new data frame called *pew_long*      
+*REMINDER* the code format looks like this:      
+```{r, eval = FALSE}
+gather(data, key, value, columns_info)
+```     
+
+```{r}
+
+```
+
+4. Reshape *pew_long* to back to wide format, and save as a new data frame called *pew_wide*. 
+*REMINDER* the code format looks like this:          
+```{r, eval = FALSE}
+spread(data, key, value)
+```     
+
+```{r}
+
+```
+
+The data should look like the original data now. *Does it?*
+
+# Reshape take 2
+
+1. From the data folder, load tb.csv into R and save it as a variable called "tb".     
+
+Do this either using the import functionality or by writing out the code.      
+
+```{r}
+
+```
+
+2. Examine tb    
+
+```{r}
+
+```
+
+3. Change the format of tb to have four columns only: iso2, year, group, values. Save as a new data frame called *tb_long*
+
+```{r}
+
+```
+
+Is there a way we could remove the excess NAs?      
+How could I find out more about the options for the gather command?     
+Where would I go for help or more information about my command?     
+
+4. Remake tb_long but this time remove the excess NAs   
+
+```{r}
+
+```
+
+5. Reshape *tb_long* to back to wide format, and save as a new data frame called *tb_wide*. 
+ 
+```{r}
+
+```
+
+
+# Missing Data
+
+To convert missing notations to R notations:
+```{r, eval = FALSE}
+data$col_1[data$col_1 == "-9"] <- NA
+```
+
+To remove missingness:
+```{r}
+complete.cases(tb)
+```
+
+```{r}
+summary(complete.cases(tb))
+```
+FALSE means there is missing data for that row, and TRUE is that there is no missing data for that row.      
+
+To create a new dataset without any missingness using **complete.cases()** run the code below:    
+
+```{r}
+tb_nomissing <- tb[complete.cases(tb),]
+```
+
+Another way to remove missing data is to use **na.omit()**    
+
+```{r}
+tb_nomissing <- na.omit(tb)
+```
+
+## Missing and Utilities   
+```{r}
+mean(airquality[,"Ozone"])
+```
+**Why is this result occuring? What does the documentation about mean tell you?**   
+
+To correct of this, the default needs to be over ridden.       
+How would you do this?     
+```{r}
+
+```
+
+ 
+# Play with joins
+
+We are going to work with the some data from Harry Potter. 
+
+1. From the data folder, load in all the dataset that start with HP (there should be 4). 
+
+```{r}
+
+```
+
+2. Examine each HP data.    
+
+```{r}
+
+```
+
+3. Merge together HP_books and HP_houses, keeping only the rows from HP_books.      
+What are your keys?
+
+```{r}
+
+```
+
+What do you think the error message means?     
+Should we be concerned?      
+
+4. What happens if we do not tell the command which columns to join on?      
+
+```{r}
+
+```
+
+5. What is the difference between doing a left_join between HP_books and HP_houses, and doing a right_join?      
+
+```{r}
+
+```
+
+6. Join together HP_deaths and HP_houses, keeping only the rows common to both data sets.      
+
+```{r}
+
+```
+
+7. Join together HP_actors and HP_houses, keep all the rows from both data sets.    
+
+```{r}
+
+```
+
+Did you get an error? If so, why?      
+
+If you successfully merged, do you see any type of order in the merge?      

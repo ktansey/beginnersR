@@ -1,0 +1,124 @@
+---
+title: "Beginners' R -- Wrapping Up"
+author: "Katherine Tansey"
+date: "27 November 2017"
+output:
+  html_document:
+    depth: 4
+    keep_md: yes
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+  word_document:
+    toc: yes
+---
+
+# Wrapping Up
+
+**ALWAYS** write scripts. Save **ALL** of the code you write, and annotate it as to what it is doing. Your future self will thank you.   
+
+## Key Points
+* R has the usual arithmetic operators and mathematical functions  
+* <- assign values to variables  
+* Treat raw data as read-only  
+* Treat generated output as disposable  
+* Separate function definition and application   
+
+
+* Use R built-in functions
+* R has different Data Structures and Data Types
+    + character and numeric
+    + Vectors and Data frames
+* Getting help    
+    + function?    
+    + Google is your friend    
+    
+   
+* Importing and Exporting data  
+* *install.packages()* to install packages (libraries)
+* *library()* to load packages
+
+* Concepts of tidy data and how to create it     
+    + Reshape data
+* Missing data      
+    + Symbol      
+    + Quantification          
+    + Concept of informative missingness           
+* Multiple options to join data together depending on outcome wanted         
+* dplyr for data manipulation         
+    + 6 key verbs         
+    + Pipe (%>%) commands together   
+    
+* Plotting your data is **ESSENTIAL**
+* ggplot2 uses a basic syntax:
+
+```{r, eval = FALSE}
+ggplot(DATA) +
+	geom_TYPE(mapping = aes(x=VAR1, y=VAR2))
+
+# or
+
+ggplot(DATA, mapping = aes(x=VAR1, y=VAR2)) +
+	geom_TYPE()
+```
+
+* Human perception alters interpretation of plots
+* Over plotting is an issue with large data sets, but there are ways to reduce it
+* Tons of geoms – select based on data you are plotting
+* Use facet to create multiple plots
+* Easy to add regression lines to plots     
+* Every aspect of plots layout can be modified which is a LOT of things     
+
+
+**DO NOT** use spaces, quotes, special characters, or wildcard characters such as ‘*’ or ‘?’ in file names, as it complicates variable expansion.
+
+Give files consistent names that make logical sense, reflect what the data is and that are easy to match with wildcard patterns to make it easy to select them for looping.
+
+
+## Self Directed Learning
+[Advanced R](http://adv-r.had.co.nz/)    
+[R for Data Science](http://r4ds.had.co.nz/)       
+[Stat 545](http://stat545.com/)    
+[Tidy Genomics](http://varianceexplained.org/r/tidy-genomics/)    
+[Data Analysis for the Life Sciences Series](http://rafalab.github.io/pages/harvardx.html)     
+[Introduction to Data Science](http://datasciencelabs.github.io/)     
+[Tidy Data](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html)           
+[An Introduction to Statistical and Data Sciences via R](http://moderndive.com/)          
+[Data Challenge Lab](https://dcl-2017-04.github.io/curriculum/upcoming.html)                 
+[STA 112FS](http://www2.stat.duke.edu/courses/Fall17/sta112.01/syllabus/)        
+[STA 523](http://www2.stat.duke.edu/~cr173/Sta523_Fa17/)   
+
+[ggplot2 reference page](http://ggplot2.tidyverse.org/reference/)         
+[Cookbook for R graphics](http://www.cookbook-r.com/Graphs/)        
+   
+There are **A LOT** of other dplyr functions that are helpful, like [distinct()](https://www.rdocumentation.org/packages/dplyr/versions/0.5.0/topics/distinct), [tally()](https://www.rdocumentation.org/packages/dplyr/versions/0.5.0/topics/tally), [n()](https://www.rdocumentation.org/packages/dplyr/versions/0.5.0/topics/n)
+
+For more see: [Window functions](https://cran.r-project.org/web/packages/dplyr/vignettes/window-functions.html) or [Full list of package commands](https://cran.r-project.org/web/packages/dplyr/dplyr.pdf)
+
+
+Working with dates in R is difficult, or really working with dates in any coding/programming language is more difficult than one would assume. Two resources to look at:        
+
+1. [lubridate](https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html)             
+2. Hadley Wickham’s R for Data Science : [Dates and Time](http://r4ds.had.co.nz/dates-and-times.html)         
+
+Other packages for data manipulation: [data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html)       
+
+## Built in R datasets
+Good data sets to practice and develop skills on:   
+
+* [nasa weather](https://github.com/hadley/nasaweather) 
+* [fuel economy](https://github.com/hadley/fueleconomy)  
+* [babynames](https://github.com/hadley/babynames)  
+* [nyc flights](https://github.com/hadley/nycflights13)     
+
+## Cheat Sheets
+[Here](https://www.rstudio.com/resources/cheatsheets/)     
+
+# Some practice
+
+dplyr tutorial using the hflights dataset that can be used for practice, which can be found [here](https://rpubs.com/justmarkham/dplyr-tutorial).
+
+[Software Carpentry](https://software-carpentry.org/lessons/)         
+
+

@@ -1,0 +1,370 @@
+---
+title: "Beginners' R -- Plotting"
+author: "Katherine Tansey"
+date: "27 November 2017"
+output:
+  html_document:
+    depth: 4
+    keep_md: yes
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+  word_document:
+    toc: yes
+---
+
+
+# Let's make a plot 
+
+First, we would need to load the *ggplot2* library. However, if we have loaded the *tidyverse* library, then *ggplot2* is already loaded. 
+
+This is because *tidyverse* package is a package of packages, does not contain its own functions per se but includes a [variety of other packages](https://blog.rstudio.org/2016/09/15/tidyverse-1-0-0/), like [dplyr](http://dplyr.tidyverse.org/), [tidyr](http://tidyr.tidyverse.org/), [ggplot2](http://ggplot2.org/). Therefore by installing and loading the *tidyverse* package, we install and load all of these other packages as well.  
+
+Using the diamonds dataset:
+
+1. Examine the diamonds dataset
+
+```{r}
+
+```
+
+2. Make a scatter plot using any two *numeric* columns in the diamonds dataset.      
+*HINT* [dbl and int](http://uc-r.github.io/integer_double/) are indicators of numeric columns       
+*REMEMBER* basic syntax for a scatter plot in ggplot is this:
+
+```{r, eval = FALSE}
+ggplot(data = mtcars, mapping = aes(x=mpg, y=hp)) +
+	geom_point()
+```
+
+```{r}
+
+```
+
+3. What happens if you do not include *data = * or *mapping = *?
+
+```{r}
+
+```
+
+4. What happens if you do not include the line starting with geom (just run the first line)?
+
+```{r}
+
+```
+
+
+# Attributes and aesthetics 
+
+Using the diamonds dataset:    
+
+1. Remake the scatter plot you made above, but assign a *non-numeric* variable to **color**.    
+
+```{r}
+
+```
+
+2. Remake the scatter plot above, but now assign a *non-numeric* variable to **shape** and set the **color** of all points to be red.     
+
+```{r}
+
+```
+
+3. Remake the scatter plot above, but now assign a *numeric* variable to **size** and a *non-numeric* variable to **color**. Change the **shape** of all the points to be a filled-in square (shape = 15).  
+
+```{r}
+
+```
+
+4. Remake the scatter plot above.
+What happens if you set **color** as an aesthetic (assign a *non-numeric* variable to color) *AND* set a **color** (red) for all points in the geom_point command?
+
+```{r}
+
+```
+
+Why do you think this is happening?   
+
+
+# Geometries 
+
+#  One Variable -- Continuous
+
+Using the diamonds dataset:
+
+1. Make a histogram of the carat variable.
+
+```{r}
+
+```
+
+2. Experiment with binwidth.     
+Add *binwidth = #* in the parentheses for *geom_histogram*. Play around with the number (#).   
+
+```{r}
+
+```
+
+What is binwidth doing?   
+Does the plot and interpretation become different as you alter the binwidth?  
+
+3. Change the histogram to a density plot.   
+
+```{r}
+
+```
+
+4. Alter the density plot code above to add an aesthetic for **color** to be the variable clarity (color = color). 
+
+```{r}
+
+```
+
+5. Alter the density plot code above, but change the word color to **fill**. 
+
+```{r}
+
+```
+
+6. Does the **color** and **fill** variables work the same for *geom_histogram*?       
+Try it out.
+
+```{r}
+
+```
+
+# One Variable -- Discrete
+
+Make a bar chart using the diamonds dataset. Select a *non-numeric* variable to chart.    
+
+```{r}
+
+``` 
+
+
+# Two Variable -- Both continuous 
+
+Using the gapminder data:          
+
+1. Make a scatter plot of life expectancy by GDP
+
+```{r}
+
+``` 
+
+2. Alter the plot above to use the log of GDP (*log(gdpPercap)*).      
+[See here](http://astrostatistics.psu.edu/su07/R/html/base/html/Log.html) for how to take log of a variable      
+
+```{r}
+
+``` 
+
+3. Alter the plot above to **color** the points by continent
+
+```{r}
+
+``` 
+
+4. Alter the plot above to change the **size** of the points by the population
+
+```{r}
+
+``` 
+
+5. There are a lot of points on the plot, so let's clean up the plot a bit and just focus on one single year, the latest year in the data 2007.   
+
+Using dplyr:     
+We can filter the data to only include rows where year is 2007. We can do this two ways:   
+    1. Filter gapminder data within the ggplot2 command    
+    2. Filter the gapminder data and save the out as a new data frame, then read this data frame in as the data for ggplot2 command    
+ 
+```{r}
+
+``` 
+
+6. Turn off legends.   
+[See here](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/) for more information about altering legends. Adding *theme(legend.position="none")* as a new line will remove the legend.   
+**REMEMBER** lines have to be connected by a +     
+
+```{r}
+
+``` 
+
+7. Add to the plot a line of best fit.  
+ggplot2 allows for multiple similar geoms to be plotted onto the same plotting window (remember the idea of layering).  
+Like above, you add a new layer to the plot but using the **+** and adding the additional geoms/layers.         
+We want to run a linear smooth model (*method = "lm"*) and turn off the se (*se = FALSE*), so add this code to the plot *geom_smooth(method = "lm", se = FALSE)* 
+
+```{r}
+
+``` 
+
+geom_smooth is creating a line for *every* continent, why do you think this is?    
+Think about how inheritance of the aesthetics works.     
+
+We want to look at a single line, a *global trend* rather than continental trends.      
+Each geom can have their own local aesthetic set. If we move **color** and **size** from the top line into geom_point as aesthetics, we will now plot the global trend line with geom_smooth.   
+
+The code for geom_point should now look like this: *geom_point(aes(color = continent, size = pop))*      
+Try to alter the code to create this.       
+
+```{r}
+
+``` 
+
+# Over plotting    
+
+Using the gapminder data:
+
+1. Remake the scatter plot of life expectancy by GDP using all the gapminder data.       
+
+```{r}
+
+```
+
+2. Change geom_point to geom_jitter.   
+Within the geom_jitter command, include arguments for alpha (*alpha = #*). 
+
+```{r}
+
+```   
+
+*What do you think the alpha option is doing?*    
+
+3. Change the above code to include **shape** with geom_jitter. Change the shape to a hollow circle (shape = 1).    
+
+```{r}
+
+```
+
+# Two Variable -- Continuous and Time
+
+Use the gapminder data:
+
+1. Create a plot showing the change in population over time for the United Kingdom.     
+We need to filter the dataset to just include the country United Kingdom. Like above there are two ways to do this:
+    1. Filter gapminder data within the ggplot2 command   
+    2. Filter the gapminder data and save the out as a new data frame, then read this data frame in as the data for ggplot2 command    
+    
+```{r}
+
+``` 
+
+2. If you wanted to compare the UK change in population to France, how could you do that? 
+
+```{r}
+
+``` 
+
+# Two Variable -- Discrete and Continuous 
+
+Using gapminder dataset:
+
+1. Make a box plot of life expectancy by continent.  
+*continent* need to wrapped in the command *factor()*, as was done in the example code above.     
+
+```{r}
+
+``` 
+*What does a box in the plot indicate?*
+
+2. Using the above plot, add points for each data point to the plot. 
+*Should we be using some overplotting reduction techniques?* 
+
+```{r}
+
+``` 
+
+You can tell jitter a range to jitter within, [see here](http://ggplot2.tidyverse.org/reference/position_jitter.html). Adding position information to the geom_jitter command can alter the spread of the points.  
+
+3. Add *position = position_jitter(width = 0.1, height = 0.1)* within the parentheses for geom_jitter to the plot made above, does this look nicer?
+
+```{r}
+
+``` 
+
+4. Change the above plot into a violin plot.   
+
+```{r}
+
+``` 
+
+*Which one do you think is more informative, the box plot or violin plot?*
+
+
+# Facet
+    
+Using the gapminder data:
+
+1. Make a box plot for life expectancy by year faceted for continent (make multiple plots in rows). 
+
+```{r}
+
+``` 
+
+2. Make the boxplot for life expectancy by continent faceted for year (make multiple plots in rows).    
+
+```{r}
+
+```  
+
+Using the diamonds data set:      
+
+3. Make a scatter plot of price vs carat and facet it by cut.    
+*REMEMBER* the over plotting techniques.    
+
+```{r}
+
+``` 
+
+# Coordinates
+
+Using the mtcars dataset:
+
+1. Make a scatter plot of mpg vs hp. Add a smoothing line (use the default settings).  
+
+```{r}
+
+```
+
+2. Using the plot above, alter the x axis using the command [xlim](http://ggplot2.tidyverse.org/reference/lims.html).      
+xlim is another layer that is added to the plot and is included as its own line connected to the rest of the plot code by a **+**    
+Change the x axis to range from 10 to 20
+
+```{r}
+
+```
+
+3. Alter the x axis using [coord_cartesian](http://ggplot2.tidyverse.org/reference/coord_cartesian.html) instead.    
+Change the x-axis to range from 10 to 20.     
+Because coord_cartesian takes both x and y axis information, you need to tell it which axis you want to alter. The code within the coord_cartesian command should look something like this : xlim=c(7.5,10)    (except we want different numbers!)
+
+```{r}
+
+```
+
+# Themes
+
+Using the gapminder data:
+
+1. Remake a line plot for the population by year for the UK. 
+*REMEMBER* need to filter the gapminder data for only the rows where country is the United Kingdom
+
+```{r}
+
+```
+
+2. Add *theme_bw()* to the plot.    
+This is another layer being add, so the *theme_bw()* line of code is add to the plot with a **+** connecting it to the rest of the code.    
+
+```{r}
+
+```
+
+3. **Challenge**. Get the total population for each continent for each year, and the create a line plot showing the change in population for each continent over time. Change the theme to be theme_bw. 
+
+```{r}
+
+```
+   
