@@ -98,7 +98,7 @@ Various functions exist to look at the data and give you basic information about
 * glimpse() -> similar to str(), dplyr function
 * summary() -> summary of data
 
-> Let’s examine the data
+## PRACTICAL - Let’s examine the data
 
 Let's first get a dataset to work on. Install and load the gapminder package in R. 
 
@@ -120,7 +120,7 @@ This is:
 We also will need to load the tidyverse package as well.     
 *We should have installed this package already you just need to load the library*
 
-> Examine the gapminder data
+## PRACTICAL -  Examine the gapminder data
 
 1. How many rows and columns are there?
 
@@ -207,7 +207,7 @@ There are *LOADS* of helper functions that work with select, to make it easier t
 
 <br> 
 
-> select          
+### PRACTICAL -  select          
 
 Using the **gapminder** dataset:    
 
@@ -286,7 +286,7 @@ The above tables were taken from [here](http://stat545.com/cm005-notes_and_exerc
 
 <br> 
 
-> filter         
+### PRACTICAL -  filter         
 
 Using the **gapminder** dataset:      
 
@@ -340,7 +340,7 @@ In a multiple parameter arrange, the order is important. In the example above, t
 
 <br> 
 
-> arrange 
+### PRACTICAL -  arrange 
 
 Using the **gapminder** dataset:
 
@@ -376,7 +376,7 @@ group_by(gapminder, country, continent)
 
 <br> 
 
-> group
+### PRACTICAL -  group
 
 Using the **msleep** dataset:
     msleep is a mammals sleep dataset
@@ -406,7 +406,7 @@ Using the **msleep** dataset:
 <br> 
 
 ## Summarise 
-Summarise data.    
+Summarize data.    
 Create summary statistics from data sets.                
 
 ![](pictures/summarise.png)     
@@ -443,7 +443,25 @@ var()    | variance
 
 <br> 
 
-> summarise
+
+#### Missing and Utilities   
+```{r, eval = FALSE}
+summarise(airquality, mean_ozone = mean(Ozone))
+```
+**Why is this result occuring? What does the documentation about mean tell you?**   
+
+If there is missing information, a lot of built-in statistical utilities will return *NA* instead of the expected result.     
+This is due to the default parameters set for different options within the functions. *na.rm = FALSE* is the default for mean (and many other utilities), meaning that missing data is not removed, and therefore the operation can not perform its task because not all the information is there.     
+
+To correct of this, the default needs to be over ridden.       
+
+```{r, eval = FALSE}
+summarise(airquality, mean_ozone = mean(Ozone, na.rm = TRUE))
+```
+
+<br>
+
+### PRACTICAL -  summarise
 
 Using the **gapminder** dataset:
 
@@ -457,7 +475,7 @@ Using the **gapminder** dataset:
 ```
 ```
 
-3. Get the minimum and maxiumum life expectancy. 
+3. Get the minimum and maximum life expectancy. 
 
 ```
 ```
@@ -495,7 +513,7 @@ mutate(dataset1, rate = NUM1/100, norm = Value2 - 50)
 
 <br> 
 
-> mutate
+### PRACTICAL -  mutate
 
 Using the **gapminder** dataset:
 
@@ -550,7 +568,7 @@ When to not use a pipe:
 
 <br> 
 
-> pipe
+### PRACTICAL -  pipe
 
 Using the **gapminder** dataset:
 
@@ -570,17 +588,17 @@ Using the **gapminder** dataset:
 ```
 
 4. Sort the data by the minimum life expectancy for each country.      
-Need to find the minimum life expectancy for each country (*HINT*: group_by and then summarise).
+Need to find the minimum life expectancy for each country (*HINT*: group_by and then summarize).
 
 ```
 ```
 
-5. Get the average life expectancy by country and year, and sorted for the longest life expectancy.   
+5. Get the average life expectancy by year, and sort for the longest life expectancy.   
 
 ```
 ```
 
-6. For just countries in Africa, create a new variable called GDP which is population multiplied by gdpPercap, then get the average GDP by year and country and sort this be descending GDP      
+6. For just countries in Africa, create a new variable called GDP which is population multiplied by gdpPercap, then get the average GDP by country and sort this be descending GDP      
 
 ```
 ```
@@ -609,7 +627,8 @@ Long data contains one row for every observation.
 Depending on what type of statistics or plot you are making will determine which data format is most appropriate. 
 
 
-![](pictures/wide_to_long.png)    
+![](pictures/wide_to_long.png)      
+
 
 <br>
 
@@ -637,22 +656,24 @@ spread(hp_data, Book, Mentions)
 
 <br> 
 
-> Reshape data     
+## PRACTICAL -  Reshape data     
 
-1. From the data folder, load *pew.txt* into R and save it as an object called **pew**     
+1. From the data folder, load *big5_data_simple.csv* into R and save it as an object called **big5**
+
+This data is information for about 20,000 people for the Big Five Personality Test. Data was downloaded (and modified slightly from [here](http://personality-testing.info/_rawdata/BIG5.zip))
 
 Do this either using the import functionality in RStudio or scripting.         
 
 ```
 ```
 
-2. Examine **pew**     
+2. Examine **big5**     
 ```
 ```
 
 **What format is the data in?**     
 
-3. Change the format of **pew** to have three columns only, one for religion, one for income bracket and one for the number of individuals in that income bracket. Save as a new data frame called **pew_long**      
+3. Change the format of **big5** to have 3 columns, one for "People", one for the question on the questionnaire (the column names) called "Question", and one for the responses to those questions called "Response". Save as a new data frame called **big5_long**        
 *REMINDER* the code format looks like this:      
 ```{r, eval = FALSE}
 gather(data, key, value, columns_info)
@@ -661,7 +682,7 @@ gather(data, key, value, columns_info)
 ```
 ```
 
-4. Reshape **pew_long** to back to wide format, and save as a new data frame called **pew_wide**.        
+4. Reshape **big5_long** to back to wide format, and save as a new data frame called **big5_wide**.        
 *REMINDER* the code format looks like this:          
 ```{r, eval = FALSE}
 spread(data, key, value)
@@ -672,23 +693,24 @@ spread(data, key, value)
 
 The data should look like the original data now. *Does it?*
 
+If you completely this quickly, **challenge** yourself to work with the unmodified version of the data (*big5_data_complex.csv*) and reshape the data to long format.       
 <br> 
 
-> Reshape take 2
+## PRACTICAL - Reshape take 2
 
-1. From the data folder, load *tb.csv* into R and save it as a variable called **tb**.     
+1. From the data folder, load *people_behavior_measure.txt* into R and save it as a variable called **task1**.     
 
 Do this either using the import functionality or by writing out the code.      
 
 ```
 ```
 
-2. Examine **tb**   
+2. Examine **task1**   
 
 ```
 ```
 
-3. Change the format of **tb** to have four columns only: iso2, year, group, values. Save as a new data frame called **tb_long**
+3. Change the format of **task1** to have 3 columns only: People, Time, Value. Save as a new data frame called **task1_long**
 
 ```
 ```
@@ -697,12 +719,12 @@ Is there a way we could remove the excess NAs?
 How could I find out more about the options for the gather command?     
 Where would I go for help or more information about my command?     
 
-4. Remake **tb_long** but this time remove the excess NAs   
+4. Remake **task1_long** but this time remove the excess NAs   
 
 ```
 ```
 
-5. Reshape **tb_long** to back to wide format, and save as a new data frame called **tb_wide**. 
+5. Reshape **task1_long** to back to wide format, and save as a new data frame called **task1_wide**. 
  
 ```
 ```
@@ -710,97 +732,6 @@ Where would I go for help or more information about my command?
 <br>   
 
 There are other ways to reshape data in R. One way is to use the package [reshape2](https://cran.r-project.org/web/packages/reshape2/reshape2.pdf). [Melt](https://www.rdocumentation.org/packages/reshape2/versions/1.4.2/topics/melt) function performs the same task as gather, and [cast](https://www.rdocumentation.org/packages/reshape2/versions/1.4.2/topics/cast) performs the same task as spread. There is not a pro/con to which one you use, both will achieve the same result just using different approaches (and different command syntax) to get there.       
-
-<br>
-
-# Missing Data
-Missing data in R is given a unique identifier *NA*, which means *not available*.        
-
-When importing data from other sources (Excel, SPSS, etc.), it is good to know what the missing notation is in those files. Some people use differing notations for missing data, such as a blank space, -9 or another numeric.      
-
-When importing data into, the notation for missing can be set, so missing data is correctly identified by R. This is done by setting an option in the import command. *How would I find out how to do this?*         
-
-To convert missing notations to R notations:
-```{r, eval = FALSE}
-data$col_1[data$col_1 == "-9"] <- NA
-```
-
-There are a few other special notations in R.  
-
-* *Inf* means *Infinity*        
-If you are not expecting infinite values this probably indicates an outlier or bad data input value.  
-
-* *NaN* means *not a number*      
-This can occur if mixed data type coerced to a number.       
-
-You can quantify missingness using **summary()** or **is.na()**         
-
-To remove missingness:
-
-```{r, eval = FALSE}
-complete.cases(tb)
-```
-This just returns a logical (TRUE/FALSE) for each row, which is not overly informative.      
-
-Wrapping the command around **summary()** is much more interpretable.    
-
-```{r, eval = FALSE}
-summary(complete.cases(tb))
-```
-
-FALSE means there is missing data for that row, and TRUE is that there is no missing data for that row.      
-
-To create a new dataset without any missingness using **complete.cases()** run the code below:    
-
-```{r, eval = FALSE}
-tb_nomissing <- tb[complete.cases(tb),]
-```
-
-Another way to remove missing data is to use **na.omit()**    
-
-```{r, eval = FALSE}
-tb_nomissing <- na.omit(tb)
-```
-
-In this example you can see that there is a very high level of missing (5528 rows out of a total of 5769 rows).      
-**Could there be an logical explanation as to why the missing data rate is so high?**     
-*HINT:* Examine the column names, what might they mean?     
-
-It is always worth stopping to investigate different aspects of your data, including ranges for variables, minimum and maximum and the rate of missing data, as well as other features. *Do these make sense?*      
-
-Missingness can be informative, and not missing at random. If you were collecting data that asked some questions that only one sex could answer, like about pregnancy, then the missing data is not missing at random but is related to another characteristic. This missing data still contains information.     
-
-> Missing Data
-
-1. Examine the built-in dataset called airquality (head and dim the dataset)    
-
-```
-```
-
-2. How many rows are missing at least 1 variable?      
-```
-```
-
-3. Remove all rows with missing data, save the new clean dataset as airquality_nomissing       
-
-```
-```     
-
-## Missing and Utilities   
-```{r, eval = FALSE}
-summarise(airquality, mean_ozone = mean(Ozone))
-```
-**Why is this result occuring? What does the documentation about mean tell you?**   
-
-If there is missing information, a lot of built-in statistical utilities will return *NA* instead of the expected result.     
-
-This is due to the default parameters set for different options within the functions. *na.rm = FALSE* is the default for mean (and many other utilities), meaning that missing data is not removed, and therefore the operation can not perform its task because not all the information is there.     
-
-To correct of this, the default needs to be over ridden.       
-
-```{r, eval = FALSE}
-summarise(airquality, mean_ozone = mean(Ozone))
-```
 
 <br>
 
@@ -880,7 +811,7 @@ left_join(dataset1, dataset2, by=c("data1column1" = "data2column1", "data1column
 
 <br> 
 
-> Play with joins
+## PRACTICAL -  Play with joins
 
 We are going to work with the some data from Harry Potter. 
 

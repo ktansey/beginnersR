@@ -1,7 +1,7 @@
 ---
 title: "Beginners' R -- Basics"
 author: "Katherine Tansey"
-date: "15 January 2018"
+date: "2 February 2018"
 output:
   html_document:
     depth: 4
@@ -13,34 +13,6 @@ output:
   word_document:
     toc: yes
 ---
-# FIRST
-
-We need to alter how the output is displayed for this R markdown file. We want the output to be displayed in the console **NOT** within the R markdown file.      
-
-To change this:
-
-    Click on the Gear Icon > Select "Chunk Output in Console" 
- 
-![](pictures/change_output.png)
-
-# Reveal the Table of Contents 
-
-This practical has a table of contents created using the **#**. Creating headers in Markdown will automatically created a Table of Contents.      
-
-To access this: press the dashed line button on the upper right corner of the markdown file.
-
-![](pictures/TOC.png)
-
-# Let's open an R script now
-
-Open a new R script
-
-    Go to File > New File > R script     
-    
-# Examine Markdown HTML file and Rmd to compare
-
-Open *Beginners_R_Basics.Rmd* and compare it to *Beginners_R_Basics.html*       
-
 
 # Open a markdown file
 
@@ -48,7 +20,7 @@ To open a new Markdown file:
 
     Go to File > New File > R Markdown...     
     
-# Do math
+# Math
 Very basic use of R is getting R to perform mathematical operations. 
 
 Click the green arrow on the right hand side to run this code in the practical markdown.  
@@ -69,9 +41,9 @@ options(scipen = 999)
 11465 * 2358971436
 ```
 What is the difference between these last two runs?    
-**What do you think *options(scipen = 999)* is doing?**      
+What do you think options(scipen = 999) is doing?     
 
-# Do some mathmatical operations in R     
+# Mathmatical operations in R     
 
 1. What is 2 to the power 16?
 
@@ -116,6 +88,7 @@ dogs
 
 # Perform other mathematical operations with variables created
 
+Complete these below with the variable you have created above.     
 ```{r}
 farmyard <- horses + ...
 farmyard
@@ -153,7 +126,25 @@ typeof(y)
 
 # Get help
 
-1. What is the default option for whether a file has a header or not?    
+1. Go to the help tab in RStudio in the bottom right quadrant, and type the function name (mean) into the search box    
+
+2. Use ?mean
+
+```{r} 
+
+```    
+
+3. Use ??mean  
+
+```{r} 
+
+```     
+
+4. Use help(mean)
+
+```{r} 
+
+```    
 
 # Install packages
 
@@ -168,44 +159,7 @@ typeof(y)
 ```{r}
 
 ``` 
-
-# Altering a markdown file  
-
-1. Alter the options so that only the results are print in the output (no code).    
-
-```{r}
-x <- 75
-y <- 238
-z <- -21
-
-(x * z) - y
-```
-
-*Knit* the HTML     
-
-2. Alter the options so that only the code is printed (no results) in the output.     
-
-```{r}
-x <- 75
-y <- 238
-z <- -21
-
-(x * z) - y
-```
-
-*Knit* the HTML   
-
-3. Alter the options so that R does not evaluate the code.    
-
-```{r}
-x <- 75
-y <- 238
-z <- -21
-
-(x * z) - y
-```
-
-*Knit* the HTML 
+When prompted, say no (type n) for updating all packages     
 
 # Set working directory
 
@@ -228,7 +182,7 @@ Choose the appropriate one for your computer by **DELETING** the # in front of t
 **REMEMBER** you are setting the working **directory** (folder) not pathing to a specific file.    
 
 
-# Getting data into R   
+# Import Data 
 
 You have been given 5 data sets to load into R.
 
@@ -272,24 +226,24 @@ Ensure the data looks correct, by clicking on the name of the object (US_CDI) in
 ```
 Ensure the data looks correct, by clicking on the name of the object (TCF4_KD) in the Environment panel. This will open up the data to be viewed.    
 
-# Get data out of R    
+# Export Data
 
-Export the three loaded data sets out of R.  Unfortunately this has to be scripted.    
+Export the three loaded data sets out of R.  This has to be scripted.    
 
-1. Export life_expec as life_expec.txt using read.table()
+1. Export life_expec as life_expec.txt using write.table()
 Remember : File name is **ALWAYS** surrounded by quotes.     
 ```{r}
 
 ```
 
-2. Export US_CDI as US_CDI.csv using read.csv()
+2. Export US_CDI as US_CDI.csv using write.csv()
 Remember : File name is **ALWAYS** surrounded by quotes.     
 ```{r}
 
 ```
 
 
-3. Export de_list as de_list.txt using read.table()
+3. Export de_list as de_list.txt using write.table()
 Remember : File name is **ALWAYS** surrounded by quotes.     
 ```{r}
 
@@ -346,7 +300,7 @@ Mstart <- c("Mason", "Michael")
 
 M_names <- top10[top10 %in% Mstart]
 ```
-%in% returns a logical vector if thers is a match or not.     
+%in% returns a logical vector if there is a match or not.     
 
 *top10 %in% Mstart* : returns a logical vector for if the match is there or not     
 *top10[top10 %in% Mstart]* : subset the vector top10 to only include those values that are TRUE in top10 %in% Mstart     
@@ -405,3 +359,42 @@ iris[,"Species"]
 ```{r, results = "hide"}
 iris$Species
 ```
+
+# Missing Data
+
+## Examples
+
+```{r}
+complete.cases(airquality)
+```
+
+```{r}
+summary(complete.cases(airquality))
+```
+
+```{r}
+airquality_nomissing <- airquality[complete.cases(airquality),]
+```
+
+```{r}
+airquality_nomissing <- na.omit(airquality)
+```
+
+## Practicals
+
+1. Examine the built-in dataset called starwars (head and dim the dataset)    
+
+```{r}
+
+```
+
+2. How many rows are missing at least 1 variable?      
+```{r}
+
+```
+
+3. Remove all rows with missing data, save the new clean dataset as starwars_nomissing       
+
+```{r}
+
+```   

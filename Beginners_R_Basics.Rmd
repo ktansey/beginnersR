@@ -82,28 +82,6 @@ To access this: press the dashed line button on the upper right corner of the ma
 <br>
 <br>
 
-You should **ALWAYS** write your code into a script that you save.
-
-This will help avoid having to re-write code that you have already written, saving your self time and energy.
-
-Helps make all the analyses you produce *reproducible*, which is **essential** for all scientific research.
-
-It is worth noting that some journals have started to ask for code submission along side papers to make the data and results within publications as transparent as possible. Get into the habit now to write and save scripts.      
-
-![](pictures/repro_quote.png)      
-
-<br>
-
-> Let's open an R script now
-
-Open a new R script
-
-    Go to File > New File > R script     
-
-![](pictures/Open_R_script.png)     
-
-<br>    
-
 # How to work with the practicals? 
 
 The practicals (*Beginners_R_Basics_Practicals.Rmd*) are written using R Markdown, which we will talk about in detail later. 
@@ -131,7 +109,7 @@ This will open a dialogue window, **click CANCEL**.
 
 <br>
 
-# Do math
+# Math
 Very basic use of R is getting R to perform mathematical operations. 
 
 Click the green arrow on the right hand side to run this code in the practical markdown.  
@@ -175,7 +153,7 @@ Rounding                                         | ceiling(), floor(), round()
 
 See [here](http://adv-r.had.co.nz/Vocabulary.html) for more basic math functions built into R.    
 
-> Do some mathmatical operations in R     
+> Mathmatical operations in R     
 
 *Complete these in Beginners_R_Basics_Practicals.Rmd*
 
@@ -213,6 +191,9 @@ When this happens, the command sometimes will need to be "killed" in order to ge
 If you do not see **>** or **+**, this implies that R is running the previous command submitted.     
 
 <br>
+
+> Prompt      
+    
 Click the green arrow to run this code in *Beginners_R_Basics_Practicals.Rmd*.       
 ```{r, eval = FALSE}
 5 - 3 + 2 * 4^
@@ -312,6 +293,7 @@ Create a list of different animals (barnyard and household animals) each with a 
 # Variables can be used like values
 Use variable name instead of values to perform mathematical operations, or any operation in R. R will replace the variable name with the value it represents.    
   
+Alter these in the *Beginners_R_Basics_Practicals.Rmd*.           
 ```{r, eval = FALSE}
 farmyard <- horses + ...
 farmyard
@@ -384,6 +366,7 @@ To determine what type of data something is you can use the **class()** or **typ
  
 Variables inherit their class from the value or object assigned to that variable.   
 
+Run this in *Beginners_R_Basics_Practicals.Rmd*.     
 ```{r}
 x <- 3
 y <- "cars"
@@ -403,24 +386,28 @@ There are various ways to get help in R.
 When you know the exact name of the function : ?function_name, help(mean)     
 When you don’t completely remember the function name : ??function_name   
 
+> Get help 
+
 Let's see how to get help for the mean function in R (**mean()**).
 
-1. Go to the help tab in RStudio in the bottom right quadrant, and type the function name into the search box    
+1. Go to the help tab in RStudio in the bottom right quadrant, and type the function name (**mean**) into the search box    
 
-2. Use **?**
+2. Use **?mean**
 
 ```
 ```    
 
-3. Use **??**
+3. Use **??mean**
 
 ```
 ```   
 
-4. Use **help()**
+4. Use **help(mean)**
 
 ```
 ```
+
+<br>     
 
 Also Google it. These are the results from googling [R mean help](https://www.google.co.uk/search?q=R+mean+help&oq=R+mean+help&aqs=chrome..69i57j0l4.1679j0j7&sourceid=chrome&ie=UTF-8) 
 
@@ -435,11 +422,6 @@ Also Google it. These are the results from googling [R mean help](https://www.go
 
 Querying the internet can be more useful as people give examples. Usually someone has asked your question previously, and someone has already answered!     
 
-> Examine the help file for read.table
-
-1. What is the default option for whether a file has a header or not?    
-
-<br>
 
 # R packages
 R is open source and easily expandable. Therefore **a lot** of people have contributed *packages* to R over the years. These are functions people have written to perform a wide variety of tasks.    
@@ -476,12 +458,15 @@ install.packages("packagename")
 library(packagename)
 ```
 
-> Install and load the library for tidyverse package
+> Install packages
+
+Install and load the **tidyverse** package.        
 
 ```
 
 ```
 
+<br>    
 
 Other subject specific repositories exist, like [Bioconductor](http://bioconductor.org/).      
 Installing packages from Bioconductor has a different specific syntax, which is:
@@ -500,8 +485,9 @@ library(packagename)
 Once the package is install, you can load the library using the normal syntax. 
 
 
+> Install packages      
 
-> Get and load the metaCCA package from Bioconductor
+Get and load the metaCCA package from Bioconductor
 
 ```
 
@@ -537,251 +523,6 @@ Most R packages come with a reference manual and vignettes. Depending on who wro
 [Click here](https://cran.r-project.org/web/packages/dplyr/index.html) 
 
 Again *NOT ALL* vignettes are this well formatted. Because packages can be contributed to R by *anyone*, it highly varies from package to package.   
-
-<br>
-
-# R Markdown 
-## Project management
-Good project management will ultimately make your life easier:     
-
-* Help ensure data integrity
-* Makes it simpler to share code 
-* Easily upload code with manuscript submission
-* Easier to pick the project back up after a break
-
-![](pictures/repro_quote2.png)
-
-Best Practice for project management:     
-
-* Treat data as read-only  
-    + **Original data is always left in an untouched state**   
-* Treat generated output as *disposable*
-    + **All outputs should be able to be regenerated from scripts**
-* Separate function definition and application
-    + Reusable chunks get pulled into their own functions
-    + Separate these into separate folders
-        + Useful functions reused across analyses and projects
-        + Analysis scripts
-
-These are some tips for creating a folder structure of different projects. This is flexible, work with a structure that best suits your working style.      
-
-The important point is to *have an organized structure*.    
-
-* Put each project in its own directory that is named after the project
-* Text documents associated with the project in the doc directory
-* Raw data and metadata in the input directory
-* Files generated during cleanup and analysis in an output directory
-* Source for the project’s scripts and programs in the src directory
-* Programs brought in from elsewhere or compiled locally in the bin directory
-* **Name all files to reflect their content or function**       
-
-![](pictures/folders.png)
-
-
-<br>
-      
-**Do not use spaces, quotes, special characters, or wildcard characters such as * or ? in filenames, as it complicates variable expansion. **      
-
-Give files consistent names that make logical sense, reflect what the data is and that are easy to match with wildcard patterns to make it easy to select them for looping.      
-
-<br>
-
-## Why use Markdown?
-Supplement R code with narration so that in the future it is easier to understand why decisions were made and what the thought process was.        
-
-It also allows for integration of UNIX (Bash), Python, SQL, and more.            
-
-Make publishable reports in various formats (HTML, PDF, Word, Slideshows). 
-
-The practical has been written in Markdown using R.    
-
-The .Rmd file can be opened in RStudio, to work on the practical or add in additional text/information as notes. 
-
-See [here](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) for reference guide, and [here](http://rmarkdown.rstudio.com/lesson-15.html) for a cheat sheet.     
-
-<br>     
-
-![](pictures/markdown_example.png)
-
-
-> Examine Markdown HTML file and Rmd to compare
-
-Open *Beginners_R_Basics.Rmd* and compare it to *Beginners_R_Basics.html*       
-
-<br>
-
-
-## Open a markdown file
-
-To open a new Markdown file:
-
-    Go to File > New File > R Markdown...     
-
-![](pictures/Open_Markdown.png)   
-
-This will open a dialogue window, select *Document* if you are making a Markdown script and give it a title.      
-
-You can select a default output format, but the output format can always alter the output format afterwards.     
-
-This will open a new markdown file.    
-
-<br>
-
-We will be working within R markdown files for the course. The course materials are written in R markdown files, and the practicals will be done within R markdown.   
-
-<br>
-
-## Basics of Markdown language
-
-R markdown uses a simple mark up language.    
-
-![](pictures/markdown_basics.png)     
-
-<br>
-
-Headers are created using the # symbol.   
-```{r, eval = FALSE}
-# Header 1
-
-## Header 2
-
-### Header 3
-```
-On a MAC, the # is created by pressing ALT + 3. If you use a keyboard from another language, we might have to google its location.  
-
-Stars or underscores can be used to make words italic or bold. A single star or underscore on either side of a word makes it *italic*, double on either side makes it **bold**.              
-```{r, eval = FALSE}
-*italics* **bold**
-
-_italics_ __bold__
-```
-
- 
-Inserting linkes and pictures can be done using:    
-```{r, eval = FALSE}
-# Link
-[click here](http://google.com)
-
-# Picture
-![](path/to/picture.png)
-![caption](path/to/picture.png)
-```    
-
-Lists can be either ordered or unordered:       
-```{r, eval = FALSE}
-# Unordered List
-* Stuff
-* some more stuff
-    + sub stuff
-    + second sub stuff
-
-# Ordered List
-1. first
-2. second
-3. third
-    + third part one
-    + third part two
-```     
-
-To get a new line, you must finish a line with **two spaces**. A hard return will not create a new line.     
-
-See [here](http://rmarkdown.rstudio.com/authoring_basics.html) for more basics. 
-
-You can examine Beginners_R_Basic.Rmd for more examples of how to create tables, links, pictures, etc. using markdown language. It will show you how this HTML was created.   
-
-## Altering the output of code chunks
-Code chunks can be modified to alter the output. 
-
-Rule                    | Example (default) | Function         
-------------------------|-------------------|---------------------------------------------------------     
-eval                    | eval=TRUE         | Is the code run and the results included in the output?      
-include                 | include=TRUE	    | Are the code and the results included in the output?     
-echo                    | echo=TRUE	        | Is the code displayed alongside the results?     
-warning                 | warning=TRUE	    | Are warning messages displayed?     
-error	                | error=FALSE	    | Are error messages displayed?      
-message	                | message=TRUE	    | Are messages displayed?      
-tidy	                | tidy=FALSE	    | Is the code reformatted to make it look “tidy”?     
-results	                | results="markup"  | How are results treated? <br> "hide" = no results <br >"asis" = results without formatting      
-cache	                | cache=FALSE	    | Are the results cached for future renders         
-comment	                | comment="##"      | What character are comments prefaced with?      
-fig.width, fig.height   | fig.width=7       | What width/height (in inches) are the plots?    
-fig.align               | fig.align="left"  | "left" "right" "center"     
-
-Table taken from [here](https://ourcodingclub.github.io/2016/11/24/rmarkdown-1.html)     
-
-> Altering a markdown file  
-
-1. Copy that code chunk and alter the options so that only the results are print in the output (no code).    
-
-```{r, eval = FALSE}
-x <- 75
-y <- 238
-z <- -21
-
-(x * z) - y
-```
-
-*Knit* the HTML      
-![](pictures/Knit.png) 
-
-2. Copy that code chunk and alter the options so that only the code is printed (no results) in the output.     
-
-```{r, eval = FALSE}
-x <- 75
-y <- 238
-z <- -21
-
-(x * z) - y
-```
-
-
-3. Copy that code chunk and alter the options so that R does not evaluate the code.    
-
-```{r, eval = FALSE}
-x <- 75
-y <- 238
-z <- -21
-
-(x * z) - y
-```
-
-<br>
-<br>
-<br>
-<br>
-
-![](pictures/markdown_alteroutput.png)  
-
-<br>
-
-## Customising R markdown files
-There are lots of ways to customize a markdown file.     
-
-Some simple things are to alter the YAML code at the top to include table of contents in the output.      
-
-These would like this:
-
-```{r, eval = FALSE}
----
-title: "Beginners_R_Basics"
-author: "Katherine Tansey"
-date: "20 September 2017"
-output:
-  html_document:
-    toc_depth: 4
-    toc: yes
-    toc_float: yes
----
-```
-The above YAML does: 
-
-* **toc** adds a table of contents to the HTML output only       
-* **toc_depth** is how far down with headers (header level four here) you want include in the table of contents         
-* **toc_float** means the table of contents will move along the side of the HTML as the person scrolls through the page         
-
-We have not specified anything for word or PDF outputs, just for HTML, so these options will only effect the formatting of the HTML output.     
-
-For more options and customizing, see [here](http://rmarkdown.rstudio.com/html_document_format.html), [here](https://blog.rstudio.com/2016/03/21/r-markdown-custom-formats/), and  [here](https://cran.r-project.org/web/packages/prettydoc/vignettes/architect.html).    
 
 <br>
 
@@ -909,7 +650,7 @@ There are **A LOT** of arguments when it comes to reading data in like:
 
 *Where would you go to see what the default arguments are for a command?*
  
-> Getting data into R       
+> Import data     
 
 You have been given 5 data sets to load into R. All datasets are located in the **data** folder within **BeginnersR_Materials_Day1**.    
 
@@ -1001,7 +742,7 @@ Again, two things are needed for exporting data into R:
 2. Use full/absolute path names
 
 ### Output in the format you want      
-Depending on what format you want the data in (text tab delimited (.txt) or comma separated file (.csv)), a different R function is used.      
+Depending on what format you want the data in (text tab delimited (.txt) or comma separated file (.csv)), a different R function is used. Both of these file types can be opened in Excel or loaded into SPPS/STATA/SAS.          
 
 Every data export function has multiple different options. These can change how a file is export, for example is there a header line or not, do you want row names.    
 
@@ -1024,7 +765,7 @@ Useful options to usually set:
 * row.names = FALSE  $\rightarrow$ default is TRUE, but if you haven't set row names they are useless     
 * quote = FALSE $\rightarrow$ default is TRUE which puts quotes around character, which most people do not want    
 
-> Get data out of R    
+> Export data  
 
 Export the three loaded data sets out of R.  Unfortunately this has to be scripted.    
 
@@ -1034,21 +775,21 @@ Export the three loaded data sets out of R.  Unfortunately this has to be script
 
 <br>  
 
-1. Export life_expec as life_expec.txt using read.table()      
+1. Export life_expec as life_expec.txt using write.table()      
 Remember : File name is **ALWAYS** surrounded by quotes.     
 
 ```
 
 ```
 
-2. Export US_CDI as US_CDI.csv using read.csv()      
+2. Export US_CDI as US_CDI.csv using write.csv()      
 Remember : File name is **ALWAYS** surrounded by quotes.     
 
 ```
 
 ```
 
-3. Export de_list as de_list.txt using read.table()      
+3. Export de_list as de_list.txt using write.table()      
 Remember : File name is **ALWAYS** surrounded by quotes.     
 
 ```

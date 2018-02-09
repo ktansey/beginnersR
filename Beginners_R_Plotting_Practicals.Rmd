@@ -1,7 +1,7 @@
 ---
 title: "Beginners' R -- Plotting"
 author: "Katherine Tansey"
-date: "27 November 2017"
+date: "2 February 2017"
 output:
   html_document:
     depth: 4
@@ -14,31 +14,13 @@ output:
     toc: yes
 ---
 
-# FIRST
-
-We need to alter how the output is displayed for this R markdown file. We want the output to be displayed in the console **NOT** within the R markdown file.      
-
-To change this:
-
-    Click on the Gear Icon > Select "Chunk Output in Console" 
- 
-![](pictures/change_output.png)
-
-# Reveal the Table of Contents 
-
-This practical has a table of contents created using the **#**. Creating headers in Markdown will automatically created a Table of Contents.      
-
-To access this: press the dashed line button on the upper right corner of the markdown file.
-
-![](pictures/TOC.png)
-
-
-
 # Let's make a plot 
 
 First, we would need to load the *ggplot2* library. However, if we have loaded the *tidyverse* library, then *ggplot2* is already loaded. 
 
 This is because *tidyverse* package is a package of packages, does not contain its own functions per se but includes a [variety of other packages](https://blog.rstudio.org/2016/09/15/tidyverse-1-0-0/), like [dplyr](http://dplyr.tidyverse.org/), [tidyr](http://tidyr.tidyverse.org/), [ggplot2](http://ggplot2.org/). Therefore by installing and loading the *tidyverse* package, we install and load all of these other packages as well.  
+
+<br>
 
 Using the diamonds dataset:
 
@@ -48,8 +30,8 @@ Using the diamonds dataset:
 
 ```
 
-2. Make a scatter plot using any two *numeric* columns in the diamonds dataset.      
-*HINT* [dbl and int](http://uc-r.github.io/integer_double/) are indicators of numeric columns       
+2. Make a scatter plot using the diamonds dataset, put "carat" on the x-axis and "price" on the y-axis.         
+     
 *REMEMBER* basic syntax for a scatter plot in ggplot is this:
 
 ```{r, eval = FALSE}
@@ -74,30 +56,32 @@ ggplot(data = mtcars, mapping = aes(x=mpg, y=hp)) +
 ```
 
 
+
 # Attributes and aesthetics 
+
 
 Using the diamonds dataset:    
 
-1. Remake the scatter plot you made above, but assign a *non-numeric* variable to **color**.    
+1. Remake the scatter plot you made above (x-axis is "carat" and y-axis is "price"), but assign "clarity" variable to **color**.    
 
 ```{r}
 
 ```
 
-2. Remake the scatter plot above, but now assign a *non-numeric* variable to **shape** and set the **color** of all points to be red.     
+2. Remake the scatter plot above, but now assign "cut" variable to **shape** and set the **color** of all points to be red.     
 
 ```{r}
 
 ```
 
-3. Remake the scatter plot above, but now assign a *numeric* variable to **size** and a *non-numeric* variable to **color**. Change the **shape** of all the points to be a filled-in square (shape = 15).  
+3. Remake the scatter plot above, but now assign "depth" variable to **size** and "clarity" variable to **color**. Change the **shape** of all the points to be a filled-in square (shape = 15).     
 
 ```{r}
 
 ```
 
 4. Remake the scatter plot above.
-What happens if you set **color** as an aesthetic (assign a *non-numeric* variable to color) *AND* set a **color** (red) for all points in the geom_point command?
+What happens if you set **color** as an aesthetic for "clarity" *AND* set a **color** (red) for all points in the geom_point command?
 
 ```{r}
 
@@ -105,8 +89,6 @@ What happens if you set **color** as an aesthetic (assign a *non-numeric* variab
 
 Why do you think this is happening?   
 
-
-# Geometries 
 
 #  One Variable -- Continuous
 
@@ -322,46 +304,17 @@ Using the gapminder data:
 
 ``` 
 
-2. Make the boxplot for life expectancy by continent faceted for year (make multiple plots in rows).    
-
-```{r}
-
-```  
-
-Using the diamonds data set:      
-
-3. Make a scatter plot of price vs carat and facet it by cut.    
-*REMEMBER* the over plotting techniques.    
+2. Make the same plot as above (box plot for life expectancy by year faceted for continent), but this time make multiple plots in columns.      
 
 ```{r}
 
 ``` 
 
-# Coordinates
-
-Using the mtcars dataset:
-
-1. Make a scatter plot of mpg vs hp. Add a smoothing line (use the default settings).  
+3. Make the line plot for the change in population over time by each country faceted by continent (make multiple plots in columns)     
 
 ```{r}
 
-```
-
-2. Using the plot above, alter the x axis using the command [xlim](http://ggplot2.tidyverse.org/reference/lims.html).      
-xlim is another layer that is added to the plot and is included as its own line connected to the rest of the plot code by a **+**    
-Change the x axis to range from 10 to 20
-
-```{r}
-
-```
-
-3. Alter the x axis using [coord_cartesian](http://ggplot2.tidyverse.org/reference/coord_cartesian.html) instead.    
-Change the x-axis to range from 10 to 20.     
-Because coord_cartesian takes both x and y axis information, you need to tell it which axis you want to alter. The code within the coord_cartesian command should look something like this : xlim=c(7.5,10)    (except we want different numbers!)
-
-```{r}
-
-```
+``` 
 
 # Themes
 
@@ -382,6 +335,18 @@ This is another layer being add, so the *theme_bw()* line of code is add to the 
 ```
 
 3. **Challenge**. Get the total population for each continent for each year, and the create a line plot showing the change in population for each continent over time. Change the theme to be theme_bw. 
+
+```{r}
+
+```
+
+
+# Exporting plots out of R
+Using the diamonds dataset:    
+
+Make a scatter plot with "carat" on the x-axis and "price" on the y-axis. Color the points by "clarity". Save the plot as a tiff called "Price_by_Carat.tiff", with a height of 10 and width of 8, a res of 200 and using a lzw compression. 
+
+Ensure this is being saved in BeginnersR_Materials folder on your Desktop.    
 
 ```{r}
 

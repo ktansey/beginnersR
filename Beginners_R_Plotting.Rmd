@@ -1,7 +1,7 @@
 ---
 title: "Beginners' R -- Plotting"
 author: "Katherine Tansey"
-date: "15 January 2018"
+date: "2 February 2018"
 output:
   html_document:
     depth: 4
@@ -74,7 +74,7 @@ To access this: press the dashed line button on the upper right corner of the ma
 
 # ALWAYS LOOK AT YOUR DATA!!!
 
-Classic example called "Ancombe's Quartet", contains four data sets with nearly the **same exact statistics**:   
+Classic example called "Anscombe's Quartet", contains four data sets with nearly the **same exact statistics**:   
 
 * mean of x    
 * mean of y      
@@ -145,7 +145,7 @@ ggplot(data = mtcars, mapping = aes(x=mpg, y=hp)) +
 
 **Both of these syntaxes are fine**
 
-> Let's make a plot 
+## PRACTICAL - Let's make a plot 
 
 First, we would need to load the *ggplot2* library. However, if we have loaded the *tidyverse* library, then *ggplot2* is already loaded. 
 
@@ -160,8 +160,8 @@ Using the diamonds dataset:
 ```
 ```
 
-2. Make a scatter plot using any two *numeric* columns in the diamonds dataset.      
-*HINT* [dbl and int](http://uc-r.github.io/integer_double/) are indicators of numeric columns       
+2. Make a scatter plot using the diamonds dataset, put "carat" on the x-axis and "price" on the y-axis.         
+     
 *REMEMBER* basic syntax for a scatter plot in ggplot is this:
 
 ```{r, eval = FALSE}
@@ -228,13 +228,13 @@ Attributes are:
 
 **Aesthetic link to variables must be within aes()**
 ```{r}
-ggplot(diamonds, aes(x = carat, y = price, color = clarity )) +
+ggplot(diamonds, aes(x = depth, y = table, color = cut )) +
 	 geom_point()
 ```
 
 **If not linked to a variable, aesthetic applied to every point equally, it is an attribute**
 ```{r}
-ggplot(diamonds, aes(x = carat, y = price)) +
+ggplot(diamonds, aes(x = depth, y = table)) +
 	 geom_point(color = "blue")
 ```
 
@@ -242,27 +242,27 @@ Not all aesthetics are available for all plot types (geometries) (for instance, 
 
 Check the documentation for geoms [here](http://ggplot2.tidyverse.org/reference/).    
 
-> Play around with attributes and aesthetics 
+## PRACTICAL - Attributes and aesthetics 
 
 Using the diamonds dataset:    
 
-1. Remake the scatter plot you made above, but assign a *non-numeric* variable to **color**.    
+1. Remake the scatter plot you made above (x-axis is "carat" and y-axis is "price"), but assign "clarity" variable to **color**.    
 
 ```
 ```
 
-2. Remake the scatter plot above, but now assign a *non-numeric* variable to **shape** and set the **color** of all points to be red.     
+2. Remake the scatter plot above, but now assign "cut" variable to **shape** and set the **color** of all points to be red.     
 
 ```
 ```
 
-3. Remake the scatter plot above, but now assign a *numeric* variable to **size** and a *non-numeric* variable to **color**. Change the **shape** of all the points to be a filled-in square (shape = 15).     
+3. Remake the scatter plot above, but now assign "depth" variable to **size** and "clarity" variable to **color**. Change the **shape** of all the points to be a filled-in square (shape = 15).     
 
 ```
 ```
 
 4. Remake the scatter plot above.
-What happens if you set **color** as an aesthetic (assign a *non-numeric* variable to color) *AND* set a **color** (red) for all points in the geom_point command?
+What happens if you set **color** as an aesthetic for "clarity" *AND* set a **color** (red) for all points in the geom_point command?
 
 ```
 ```
@@ -311,7 +311,7 @@ ggplot(diamonds, aes(x = price)) +
 
 <br>
 
-> Let’s play around with making plots
+### PRACTICAL - One Variable -- Continuous
 
 Using the diamonds dataset:
 
@@ -371,7 +371,7 @@ ggplot(diamonds, aes(x = cut)) +
 
 <br>
 
-> Let’s play around with making plots
+### PRACTICAL - One Variable -- Discrete
 
 Make a bar chart using the diamonds dataset. Select a *non-numeric* variable to chart.    
 
@@ -454,7 +454,7 @@ ggplot(mtcars, aes(x = mpg, y = wt)) +
 
 <br>
 
-> Let’s play around with making plots
+### PRACTICAL - Two Variable -- Both continuous
 
 Using the gapminder data:          
 
@@ -552,7 +552,7 @@ Over plotting is a huge issue when working with large data sets, but there are f
 
 <br>
 
-> Attempt to fix overplotting
+#### PRACTICAL - Overplotting
 
 Using the gapminder data:
 
@@ -600,7 +600,7 @@ ggplot(USPersonalExpenditure_long) +
 
 <br>
 
-> Let’s play around with making plots
+### PRACTICAL - Two Variable -- Continuous and Time
 
 Use the gapminder data:
 
@@ -642,7 +642,7 @@ ggplot(mtcars, aes(x = factor(cyl), y=wt )) +
 <br>
 
 
-> Let’s play around with making plots
+### PRACTICAL - Two Variable -- Discrete and Continuous 
 
 Using gapminder dataset:
 
@@ -696,7 +696,7 @@ ggplot(diamonds) +
 
 <br>
 
-> Let’s play around with faceting plots
+### PRACTICAL - Facets
 
 Using the gapminder data:
 
@@ -705,7 +705,12 @@ Using the gapminder data:
 ```
 ``` 
 
-2. Make the boxplot for life expectancy by continent faceted for continent (make multiple plots in rows).   
+2. Make the same plot as above (box plot for life expectancy by year faceted for continent), but this time make multiple plots in columns.      
+
+```
+``` 
+
+3. Make the line plot for the change in population over time by each country faceted by continent (make multiple plots in columns)     
 
 ```
 ``` 
@@ -714,42 +719,6 @@ Using the diamonds data set:
 
 3. Make a scatter plot of price vs carat and facet it by cut.    
 *REMEMBER* the over plotting techniques.    
-
-```
-```
-
-<br>
-
-# Coordinates
-There are two different ways to alter the axis of a plot.     
-
-The first is use [xlim and ylim](http://ggplot2.tidyverse.org/reference/lims.html) to alter the x or y axis.  
-
-However, using these while plotting any statistics or smooth/regression lines will alter the line.   
-
-To not alter plotting statistics, use [coord_cartesian](http://ggplot2.tidyverse.org/reference/coord_cartesian.html) instead. This will change the axis limits without altering statistic plot information.   
-
-Furthermore, in general it is ideal to keep plots to aspect ratio of 1, however not always possible.  
-
-> Alter axis
-
-Using the mtcars dataset:
-
-1. Make a scatter plot of mpg vs hp. Add a smoothing line (use the default settings).  
-
-```
-```
-
-2. Using the plot above, alter the x axis using the command [xlim](http://ggplot2.tidyverse.org/reference/lims.html).      
-xlim is another layer that is added to the plot and is included as its own line connected to the rest of the plot code by a **+**    
-Change the x axis to range from 10 to 20
-
-```
-```
-
-3. Alter the x axis using [coord_cartesian](http://ggplot2.tidyverse.org/reference/coord_cartesian.html) instead.    
-Change the x-axis to range from 10 to 20.     
-Because coord_cartesian takes both x and y axis information, you need to tell it which axis you want to alter. The code within the coord_cartesian command should look something like this : xlim=c(7.5,10)    (except we want different numbers!)
 
 ```
 ```
@@ -797,6 +766,64 @@ This is another layer being add, so the *theme_bw()* line of code is add to the 
 ```
 
 <br>
+
+# Exporting plots out of R
+
+There are two ways to export plots in R.
+
+The first is to click the **Export** button in the **Plot** window.   
+
+<br>
+
+![](pictures/export_button.png)        
+
+<br>
+<br>
+
+Ensure you are saving in the directory you want (default should be your set working directory), change the file name, and you can alter the size of the image. It is best to keep the aspect ratio the same as you alter the size.  
+
+<br>
+
+![](pictures/export_options.png)        
+
+<br>
+<br>
+
+The second way, and a way to ensure high resolution (most journals want 300dpi for plots), is to open a plotting file and print the plot to that file. 
+
+```{r, eval = FALSE}
+tiff("Figure_1.tiff", height = 10, width = 20, units = 'cm', 
+     compression = "lzw", res = 300)
+
+ggplot(mtcars, aes(x = mpg, y = hp)) +
+    geom_point() 
+
+dev.off()
+```
+
+The syntax is a bit strange. 
+
+You first open a file using the **tiff()** function.     
+
+* This requires a name for the tiff you are going to create (in our example "Figure1.tiff"). 
+* You can set a **height** and **width** for the plot, and the **units** you want these measured in. 
+* For tiffs, it is good to compress the file using **compression** and *lzw* is a very common compression.
+* **res** sets the resolution for the plot, in the example that is set to 300, which should be fine for journals.     
+
+Next you make your plot as usual. 
+
+Then you **MUST** close the plotting file using **dev.off()**.
+
+## PRACTICAL - Export a plot 
+
+Using the diamonds dataset:    
+
+Make a scatter plot with "carat" on the x-axis and "price" on the y-axis. Color the points by "clarity". Save the plot as a tiff called "Price_by_Carat.tiff", with a height of 10 and width of 8, a res of 200 and using a lzw compression.     
+
+Ensure this is being saved in BeginnersR_Materials folder on your Desktop.    
+
+```
+```
 
 # Things to think about when making plots
 Humans read different information with differing levels of ease, and this should be taken into account when creating a graphic. Make it easy for your reader to be able to interpret the information.        
